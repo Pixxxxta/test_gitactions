@@ -37,7 +37,7 @@ class TasksPage:
     def click_med_book_btn(self):
         self._helpers.swipe_down()
         time.sleep(2)
-        self._helpers.wait_and_click('(//android.widget.Button[@text="Подробнее"])[2]')
+        self._helpers.wait_and_click('//android.widget.Button[@text="Подробнее"]')
 
     def check_current_url(self, current_url):
         """Проверяет, что страница с нужным url загружена"""
