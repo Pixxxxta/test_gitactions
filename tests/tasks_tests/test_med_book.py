@@ -32,7 +32,11 @@ class TestMedBook:
         tasks_page.go_to_med_book()
         take_screenshot(driver=appium_driver, test_name='test_med_book_have_info',
                         folder_name='tasks_page',
-                        screenshot_name=f"screen_after_go_med_book_page")
+                        screenshot_name=f"screen_after_scroll_to_med_book")
+        tasks_page.click_med_book_btn()
+        take_screenshot(driver=appium_driver, test_name='test_med_book_have_info',
+                        folder_name='tasks_page',
+                        screenshot_name=f"screen_after_click_med_book_btn")
         med_book_page.close_rm_window()
         take_screenshot(driver=appium_driver, test_name='test_med_book_have_info',
                         folder_name='tasks_page',
