@@ -19,6 +19,7 @@ class TasksPage:
         self._helpers.wait_and_click('//android.widget.Button[@text="Зарегистрироваться"]')
 
     def go_to_halal_card(self):
+        self._helpers.swipe_down()
         time.sleep(1)
         self._helpers.wait_and_click('//android.widget.Button[@text="Подробнее"]')
 
@@ -27,8 +28,14 @@ class TasksPage:
         self._helpers.wait_and_click('//android.widget.Button[@text="Записаться"]')
 
     def go_to_med_book(self):
-        time.sleep(5)
-        self._helpers.find_element_with_scroll(xpath='//*[@text="Проверить мед.книжку"]')
+        self._helpers.swipe_down()
+        time.sleep(1)
+        self._helpers.swipe_down()
+        time.sleep(1)
+        self._helpers.swipe_down()
+        time.sleep(1)
+        self._helpers.swipe_down()
+        # self._helpers.find_element_with_scroll(xpath='//*[@text="Проверить мед.книжку"]')
         self._helpers.wait_and_click('//android.widget.Button[@text="Проверить"]')
 
     def check_current_url(self, current_url):
