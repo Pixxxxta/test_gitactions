@@ -35,6 +35,8 @@ class TasksPage:
         # self._helpers.wait_and_click('//*[@text="Проверить"]')
 
     def click_med_book_btn(self):
+        self._helpers.swipe_down()
+        time.sleep(2)
         self._helpers.wait_and_click('(//android.widget.Button[@text="Подробнее"])[2]')
 
     def check_current_url(self, current_url):
