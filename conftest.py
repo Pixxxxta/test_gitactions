@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from appium import webdriver
 from utils.config import emulator_name, android_version
@@ -12,6 +14,7 @@ def appium_driver(request):
     # myapp.apk - последняя версия прода
     apk_path = os.path.abspath(
         os.path.join(os.getcwd(), 'artifacts', 'app', 'app-debug.apk'))
+
     desired_caps = {
         'platformName': 'Android',
         'deviceName': emulator_name,
@@ -28,3 +31,12 @@ def appium_driver(request):
 
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def uninstall_app(appium_driver):
+    def _uninstall():
+        appium_driver.remove_app("rosmigrant.online.app")
+
+    return _uninstall
+
