@@ -29,10 +29,10 @@ class TestMedBook:
         take_screenshot(driver=appium_driver, test_name='test_med_book_have_info',
                         folder_name='tasks_page',
                         screenshot_name=f"screen_after_go_to_tasks_page")
-        tasks_page.go_to_med_book()
-        take_screenshot(driver=appium_driver, test_name='test_med_book_have_info',
-                        folder_name='tasks_page',
-                        screenshot_name=f"screen_after_scroll_to_med_book")
+        # tasks_page.go_to_med_book()
+        # take_screenshot(driver=appium_driver, test_name='test_med_book_have_info',
+        #                 folder_name='tasks_page',
+        #                 screenshot_name=f"screen_after_scroll_to_med_book")
         tasks_page.click_med_book_btn()
         take_screenshot(driver=appium_driver, test_name='test_med_book_have_info',
                         folder_name='tasks_page',
