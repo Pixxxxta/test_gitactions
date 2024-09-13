@@ -29,7 +29,10 @@ class TasksPage:
 
     def go_to_med_book(self):
         for i in range(10):
-            if self._helpers.is_element_present(value='//*[@text="Проверить мед.книжку"]'):
+            print(f'Итерация - {i}')
+            element = self._helpers.is_element_present(value='//*[@text="Проверить мед.книжку"]')
+            print(element)
+            if element:
                 return True
             else:
                 self._helpers.swipe_down()
