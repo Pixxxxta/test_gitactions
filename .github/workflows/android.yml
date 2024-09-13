@@ -64,6 +64,8 @@ jobs:
             adb shell screenrecord /sdcard/test_record.mp4 &
             pytest -v --disable-warnings -q tests/ -m group1
             adb shell killall -2 screenrecord
+      - name: Stop record
+        run: adb shell killall -2 screenrecord
 
       - name: Pull screen recording from emulator
         run: adb pull /sdcard/test_record.mp4 ./test_record.mp4
