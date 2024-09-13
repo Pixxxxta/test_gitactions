@@ -87,6 +87,7 @@ class StartPage:
         """
         try:
             self._click_element_by_xpath('//*[@text="Задачи"]')
+            time.sleep(10)
         except TimeoutException:
             raise TimeoutException("Не удалось перейти на страницу с задачами")
 
