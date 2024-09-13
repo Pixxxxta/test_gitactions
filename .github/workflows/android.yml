@@ -86,7 +86,7 @@ jobs:
           path: artifacts/screenshots
 
       - name: Upload test screen recording
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: test_record.mp4
           path: ./test_record.mp4
