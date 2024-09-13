@@ -9,9 +9,10 @@ from utils.screenshot_helper import take_screenshot
 import allure
 
 
-class TestResume:
+class TestMedBook:
     @pytest.mark.parametrize("med_book_data", ['1111'])
     @allure.feature('Проверка медкнижки')
+    @pytest.mark.group1
     @allure.story('Проверка с наличием информации')
     def test_med_book_have_info(self, appium_driver, med_book_data):
         # Инициализация стартовой страницы
