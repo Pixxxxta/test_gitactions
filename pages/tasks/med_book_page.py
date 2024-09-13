@@ -43,3 +43,7 @@ class MedBookPage:
             return med_book_data is not None
         except TimeoutException:
             return False
+
+    def scroll_d(self):
+        self._helpers.swipe_down()
+
