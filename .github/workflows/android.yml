@@ -61,7 +61,12 @@ jobs:
             adb wait-for-device
             adb shell input keyevent 82
             adb devices
+            adb shell screenrecord /sdcard/test_record.mp4 &
             pytest -v --disable-warnings -q tests/ -m group1
+            adb shell killall -2 screenrecord
+
+      - name: Pull screen recording from emulator
+        run: adb pull /sdcard/test_record.mp4 ./test_record.mp4
 
 
       - name: check folders with screenshot
@@ -79,6 +84,12 @@ jobs:
         with:
           name: test-screenshots_group1
           path: artifacts/screenshots
+
+      - name: Upload test screen recording
+        uses: actions/upload-artifact@v2
+        with:
+          name: test_record.mp4
+          path: ./test_record.mp4
 
 
 
