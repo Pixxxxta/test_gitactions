@@ -28,7 +28,7 @@ class TasksPage:
         self._helpers.wait_and_click('//android.widget.Button[@text="Записаться"]')
 
     def go_to_med_book(self):
-        for i in range(3):
+        for i in range(4):
             self._helpers.swipe_down()
             time.sleep(2)
         # self._helpers.find_element_with_scroll(xpath='//*[@text="Проверить мед.книжку"]')
