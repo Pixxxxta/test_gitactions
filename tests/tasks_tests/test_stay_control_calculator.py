@@ -10,7 +10,6 @@ import allure
 class TestStayControlCalculator:
     @pytest.mark.parametrize("first_entry_date, end_date", [('01012024', '30 марта 2024')])
     @allure.feature('Проверка калькулятора контроля сроков пребывания')
-    @pytest.mark.group1
     def test_calc_control(self, appium_driver, first_entry_date, end_date):
         # Инициализация стартовой страницы
         start_page = StartPage(appium_driver)

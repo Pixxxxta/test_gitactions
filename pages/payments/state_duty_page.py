@@ -133,7 +133,7 @@ class StateDutyPage:
         except TimeoutException:
             print("Элемент не найден или не кликабелен в течение заданного времени.")
 
-    def verify_payment_page_loaded(self, timeout=20):
+    def verify_payment_page_loaded_a3(self, timeout=20):
         """Проверяет, что страница оплаты загружена."""
         try:
             payment_page_identifier = self._helpers.wait_for_element(

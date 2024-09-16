@@ -41,8 +41,9 @@ class TaxesPage:
     def verify_payment_page_loaded(self, timeout=20):
         """Проверяет, что страница оплаты загружена."""
         try:
-            payment_page_identifier = self._helpers.wait_for_element('//android.view.View[@text="ОПЛАТА"]',
-                                                                     timeout=timeout)
+            payment_page_identifier = self._helpers.wait_for_element(
+                '//android.view.View[@text="Платёжный сервис А3"]/android.view.View['
+                '1]/android.view.View/android.view.View/android.view.View[2]', timeout)
             return payment_page_identifier is not None
         except TimeoutException:
             return False
