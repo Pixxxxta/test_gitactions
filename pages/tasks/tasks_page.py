@@ -32,7 +32,17 @@ class TasksPage:
             self._helpers.swipe_down()
             time.sleep(2)
         # self._helpers.find_element_with_scroll(xpath='//*[@text="Проверить мед.книжку"]')
-        # self._helpers.wait_and_click('//*[@text="Проверить"]')
+        self._helpers.wait_and_click('//*[@text="Проверить"]')
+
+    def go_to_calc(self):
+        self._helpers.swipe_down()
+        time.sleep(1)
+        self._helpers.swipe_down()
+        time.sleep(1)
+        self._helpers.swipe_down()
+        # self._helpers.find_element_with_scroll(xpath='//*[@text="Калькулятор для контроля сроков пребывания"]')
+        time.sleep(2)
+        self._helpers.wait_and_click(value='//*[@text="Перейти"]')
 
     def click_med_book_btn(self):
         self._helpers.wait_and_click('//android.widget.Button[@text="Проверить"]')

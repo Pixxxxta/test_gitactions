@@ -25,7 +25,6 @@ class StartPage:
         }
 
         xpath = languages_xpath.get(language)
-        print(xpath)
         if xpath:
             try:
                 WebDriverWait(self._driver, 60).until(

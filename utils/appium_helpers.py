@@ -67,7 +67,7 @@ class AppiumHelpers:
         except TimeoutException:
             return False
 
-    def find_element_with_scroll(self, xpath, max_swipes=15, timeout=30):
+    def find_element_with_scroll(self, xpath, max_swipes=15, timeout=3):
         """Прокручивает экран, пока не найдет элемент с заданным xpath или не выполнит все прокруты."""
         for i in range(max_swipes):
             try:
@@ -75,6 +75,4 @@ class AppiumHelpers:
                 return element
             except:
                 self.swipe_down()
-                time.sleep(1)
-                raise TimeoutException(f"Элемент с локатором '{xpath}' не найден, итерация - {i}")
         raise Exception(f"Element with xpath {xpath} not found after {max_swipes} swipes")
