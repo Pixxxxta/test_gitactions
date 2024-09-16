@@ -8,7 +8,7 @@ import allure
 
 
 class TestStayControlCalculator:
-    @pytest.mark.parametrize("first_entry_date", "end_date", [('01012024', 'end_date')])
+    @pytest.mark.parametrize("first_entry_date, end_date", [('01012024', 'end_date')])
     @allure.feature('Проверка калькулятора контроля сроков пребывания')
     @pytest.mark.group1
     def test_calc_control(self, appium_driver, first_entry_date, end_date):
