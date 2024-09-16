@@ -8,7 +8,7 @@ import allure
 
 
 class TestStayControlCalculator:
-    @pytest.mark.parametrize("first_entry_date, end_date", [('01012024', 'end_date')])
+    @pytest.mark.parametrize("first_entry_date, end_date", [('01012024', '30 марта 2024')])
     @allure.feature('Проверка калькулятора контроля сроков пребывания')
     @pytest.mark.group1
     def test_calc_control(self, appium_driver, first_entry_date, end_date):
@@ -44,7 +44,7 @@ class TestStayControlCalculator:
                         folder_name='calc_page',
                         screenshot_name=f"screen_after_click_ready_btn")
 
-        assert calc_page.verify_end_date_of_stay(end_date=end_date), \
+        assert calc_page.verify_end_date_of_stay(end_date='30 марта 2024'), \
             'Отобразилась неправильная дата окончания пребывания'
         take_screenshot(driver=appium_driver, test_name='test_calc_control',
                         folder_name='calc_page',
