@@ -19,8 +19,7 @@ class StartPage:
         :return: None
         """
         languages_xpath = {
-
-            "Русский": '//*[@text="Русский"]',
+            "Русский": '//android.widget.TextView[@text="Русский"]',
             "Узбекский": '//*[@text="Ўзбек"]',
             "Таджикский": '//*[@text="Тоҷикӣ"]',
             "Кыргызский": '//*[@text="Кыргыз"]'
