@@ -10,7 +10,7 @@ from utils.screenshot_helper import take_screenshot
 @pytest.mark.usefixtures("uninstall_app")
 class TestSearchFinesMVD:
     @allure.feature('Проверка штрафов МВД')
-    @pytest.mark.group1
+    @pytest.mark.group9
     @allure.story('Проверка по паспорту иностранного гражданина без штрафов')
     @pytest.mark.parametrize("doc_number, doc_category, full_doc_category", [
         ('FA6169954', 'Паспорт', 'Паспорт иностранного гражданина')

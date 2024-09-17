@@ -4,6 +4,7 @@ from selenium.common import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from utils.screenshot_helper import take_screenshot
 
 
 class StartPage:
@@ -28,9 +29,11 @@ class StartPage:
         xpath = languages_xpath.get(language)
         if xpath:
             try:
+                time.sleep(5)
                 WebDriverWait(self._driver, 60).until(
                     EC.element_to_be_clickable((By.XPATH, xpath))
                 ).click()
+                take_screenshot(driver=self._driver,test_name="Пытаюсь ткнуть на русский",folder_name="ТЫкаю на русский", screenshot_name="ТЫКАЮ НА РУССКИЙ")
                 print('Я кликнул на русский')
                 time.sleep(5)
             except TimeoutException:
