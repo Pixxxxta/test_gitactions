@@ -18,7 +18,8 @@ class StartPage:
         :return: None
         """
         languages_xpath = {
-            "Русский": "//*[@text='Русский']",
+
+            "Русский": '//*[@text="Русский"]',
             "Узбекский": '//*[@text="Ўзбек"]',
             "Таджикский": '//*[@text="Тоҷикӣ"]',
             "Кыргызский": '//*[@text="Кыргыз"]'
@@ -30,6 +31,7 @@ class StartPage:
                 WebDriverWait(self._driver, 60).until(
                     EC.element_to_be_clickable((By.XPATH, xpath))
                 ).click()
+                print('Я кликнул на русский')
                 time.sleep(5)
             except TimeoutException:
                 raise NoSuchElementException(f"Элемент с языком '{language}' не найден.")
