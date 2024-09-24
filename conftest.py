@@ -27,6 +27,7 @@ def appium_driver(request):
                               options=UiAutomator2Options().load_capabilities(desired_caps))
 
     start_page = StartPage(driver)
+    time.sleep(30)
     # start_page.click_disable_notification()
     start_page.select_language()
 

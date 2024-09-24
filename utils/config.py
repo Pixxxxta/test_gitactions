@@ -4,7 +4,7 @@ emulator_port = 4723
 
 # Параметры эмулятора Android
 emulator_name = 'emulator-5554'
-android_version = '6.0'
+android_version = '11.0'
 
 # Данные для тестов
 patent = [

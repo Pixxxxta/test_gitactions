@@ -54,7 +54,9 @@ jobs:
       - name: Start Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 23
+          api-level: 30   # Версия Android 11.0
+          target: google_apis
+          arch: x86_64
           ndk: 21.0.6113669
           cmake: 3.10.2.4988404
           script: |
@@ -62,6 +64,7 @@ jobs:
             adb shell input keyevent 82
             adb devices
             pytest -v --disable-warnings -q tests_dev/ -m group_test
+      
 
       - name: check folders with screenshot
         if: always()
