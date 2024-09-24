@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from utils.appium_helpers import AppiumHelpers
-
+from utils.screenshot_helper import take_screenshot
 
 
 class StartPage:
@@ -43,6 +43,9 @@ class StartPage:
         # else:
         #     raise ValueError("Недопустимое значение языка. Допустимые значения: Русский, Узбекский, Таджикский, "
         #                      "Кыргызский")
+        take_screenshot(driver=self._driver, test_name='select_language',
+                        folder_name='select_language',
+                        screenshot_name=f"select_language")
         elements = self._helpers.find_all_textview()
         elements[-4].click()
 
