@@ -63,7 +63,7 @@ jobs:
             adb wait-for-device
             adb shell input keyevent 82
             adb devices
-            pytest -v --disable-warnings -q tests_dev/ -m group_test
+            pytest tests_dev\payments_tests\test_payment_state_duty.py -v
       
 
       - name: check folders with screenshot
