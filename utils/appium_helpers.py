@@ -9,6 +9,18 @@ class AppiumHelpers:
     def __init__(self, driver):
         self._driver = driver
 
+    def find_all_textview(self, timeout=60):
+        """Находит все элементы EditText на странице и возвращает их списком."""
+        try:
+            # Ожидаем загрузки всех элементов EditText на экране
+            WebDriverWait(self._driver, timeout).until(
+                EC.presence_of_all_elements_located((By.XPATH, '//android.widget.TextView'))
+            )
+            # Находим и возвращаем все элементы EditText
+            return self._driver.find_elements(By.XPATH, '//android.widget.TextView')
+        except TimeoutException:
+            raise TimeoutException("Не удалось найти элементы TextView на экране.")
+
     def find_all_edittexts(self, timeout=60):
         """Находит все элементы EditText на странице и возвращает их списком."""
         try:
