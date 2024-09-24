@@ -43,9 +43,6 @@ class StartPage:
         # else:
         #     raise ValueError("Недопустимое значение языка. Допустимые значения: Русский, Узбекский, Таджикский, "
         #                      "Кыргызский")
-        take_screenshot(driver=self._driver, test_name='select_language',
-                        folder_name='select_language',
-                        screenshot_name=f"select_language")
         elements = self._helpers.find_all_textview()
         elements[-4].click()
 
