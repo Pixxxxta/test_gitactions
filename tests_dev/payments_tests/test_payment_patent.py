@@ -69,7 +69,7 @@ class TestPaymentPatent:
         start_page = StartPage(appium_driver)
         patent_page = PatentPage(appium_driver)
         services_page = ServicesPage(appium_driver)
-        take_screenshot(driver=appium_driver, test_name='test_payment_patent',
+        take_screenshot(driver=appium_driver, test_name='test_payment_patent_with_wrong_inn',
                         folder_name='main_page',
                         screenshot_name=f"screen_after_launch_app")
 
@@ -77,22 +77,20 @@ class TestPaymentPatent:
         services_page.go_to_payment_patent()
 
         patent_page.set_patent_series_number(series_number, last_name, name, inn, passport, date_of_issue_patent)
-        take_screenshot(driver=appium_driver, test_name='test_payment_patent',
+        take_screenshot(driver=appium_driver, test_name='test_payment_patent_with_wrong_inn',
                         folder_name='payments_page',
                         screenshot_name=f"screen_after_input_data")
 
         patent_page.scroll_down()
         time.sleep(1)
-        patent_page.scroll_down()
-        time.sleep(1)
         patent_page.click_payment_button()
-        take_screenshot(driver=appium_driver, test_name='test_payment_patent',
+        take_screenshot(driver=appium_driver, test_name='test_payment_patent_with_wrong_inn',
                         folder_name='payments_page',
                         screenshot_name=f"screen_after_click_payment_btn")
 
         # Проверка на наличие загрузку страницы оплаты
         assert patent_page.verify_inn_error(), \
             f'На не появилось сообщение об ошибке формата ИНН - {series_number}, {last_name}, {name}, {inn}, {passport}, {date_of_issue_patent}'
-        take_screenshot(driver=appium_driver, test_name='test_payment_patent',
+        take_screenshot(driver=appium_driver, test_name='test_payment_patent_with_wrong_inn',
                         folder_name='payments_page',
                         screenshot_name=f"screen_after_verify_inn_error")

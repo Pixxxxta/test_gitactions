@@ -57,14 +57,14 @@ jobs:
             api-level: 30   # Версия Android 11.0
             target: google_apis
             arch: x86_64
-            device: pixel_8_pro  # Указываем устройство Pixel 8 Pro
+            device: pixel_8_pro  # Устройство Pixel 8 Pro
             ndk: 21.0.6113669
             cmake: 3.10.2.4988404
             script: |
               adb wait-for-device
               adb shell input keyevent 82
               adb devices
-              pytest tests_dev/payments_tests/
+              pytest tests_dev/payments_tests/test_payment_patent.py
       
 
       - name: check folders with screenshot

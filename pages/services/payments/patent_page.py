@@ -22,37 +22,19 @@ class PatentPage:
         :param series_number: Серия и номер патента
         """
         self.scroll_down()
-        patent_input = self._helpers.wait_for_element(
-            '//android.webkit.WebView[@text="Росмигрант"]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View[4]/android.widget.EditText')
-
-        date_of_issue_input = self._helpers.wait_for_element(
-            '//android.webkit.WebView[@text="Росмигрант"]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View[6]/android.widget.EditText')
-
-        last_name_input = self._helpers.wait_for_element(
-            '//android.webkit.WebView[@text="Росмигрант"]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View[8]/android.widget.EditText')
-
-        name_input = self._helpers.wait_for_element(
-            '//android.webkit.WebView[@text="Росмигрант"]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View[10]/android.widget.EditText')
-
-        passport_input = self._helpers.wait_for_element(
-            '//android.webkit.WebView[@text="Росмигрант"]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View[12]/android.widget.EditText')
-
-        inn_input = self._helpers.wait_for_element(
-            '//android.webkit.WebView[@text="Росмигрант"]/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View/android.view.View[14]/android.widget.EditText')
-
-        self.scroll_down()
-        patent_input.click()
+        elements = self._helpers.find_all_edittexts()
+        elements[0].click()
         self._helpers.adb_input_text(series_number)
         self._driver.hide_keyboard()
-        date_of_issue_input.click()
+        elements[1].click()
         self._helpers.adb_input_text(date_of_issue_patent)
         self._driver.hide_keyboard()
-        last_name_input.send_keys(last_name)
-        name_input.send_keys(name)
-        passport_input.click()
+        elements[2].send_keys(last_name)
+        elements[3].send_keys(name)
+        elements[4].click()
         self._helpers.adb_input_text(passport)
         self._driver.hide_keyboard()
-        inn_input.click()
+        elements[5].click()
         self._helpers.adb_input_text(inn)
         self._driver.hide_keyboard()
 

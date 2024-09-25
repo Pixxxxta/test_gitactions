@@ -114,6 +114,9 @@ class TestTaxes:
         #                         folder_name='payments_page',
         #                         screenshot_name=f"screen_after_click_add_doc")
         taxes_page.close_info_page()
+        take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_close_info_page")
         # Выбор типа документа проверки
         taxes_page.choose_doc_type(doc_type)
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
