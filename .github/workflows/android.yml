@@ -44,7 +44,7 @@ jobs:
 
       - name: Start Appium Server
         run: |
-          appium --base-path /wd/hub &
+          appium --base-path /wd/hub --relaxed-security &
 
       - name: Verify Appium server is running
         run: |
