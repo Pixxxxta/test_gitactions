@@ -5,7 +5,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from utils.appium_helpers import AppiumHelpers
-from utils.screenshot_helper import take_screenshot
 
 
 class StartPage:
@@ -23,14 +22,18 @@ class StartPage:
         :param language: Язык, который нужно выбрать. Допустимые значения: Русский, Узбекский, Таджикский, Кыргызский
         :return: None
         """
-        # languages_xpath = {
-        #     "Русский": "//*[@text='Русский']",
-        #     "Узбекский": '//*[@text="Ўзбек"]',
-        #     "Таджикский": '//*[@text="Тоҷикӣ"]',
-        #     "Кыргызский": '//*[@text="Кыргыз"]'
-        # }
-        #
-        # xpath = languages_xpath.get(language)
+        languages_xpath = {
+            "Русский": "//*[@text='Русский']",
+            "Узбекский": '//*[@text="Ўзбек"]',
+            "Таджикский": '//*[@text="Тоҷикӣ"]',
+            "Кыргызский": '//*[@text="Кыргыз"]'
+        }
+
+        xpath = languages_xpath.get(language)
+        elements = self._helpers.find_all_textview()
+        print(len(elements))
+        print(elements)
+        elements[-4].click()
         # print(xpath)
         # if xpath:
         #     try:
@@ -43,8 +46,6 @@ class StartPage:
         # else:
         #     raise ValueError("Недопустимое значение языка. Допустимые значения: Русский, Узбекский, Таджикский, "
         #                      "Кыргызский")
-        elements = self._helpers.find_all_textview()
-        elements[-4].click()
 
     def is_language_selected(self, language='Русский'):
         """
@@ -140,3 +141,24 @@ class StartPage:
 
     def go_to_subscription(self):
         self._click_element_by_xpath('//android.widget.Button[@text="Оформить сейчас"]')
+
+    def go_to_start_page(self):
+        for _ in range(20):
+            try:
+                element = self._helpers.wait_for_element('//*[@text="Лента новостей"]', timeout=5)
+                return element
+            except:
+                self._helpers.click_back_btn()
+        raise Exception(f"Не удалось перейти на стартовую страницу с лентой новостей")
+
+    def reset_user(self):
+        self.go_to_start_page()
+        time.sleep(1)
+        self.go_to_account()
+        time.sleep(1)
+        delete_acc_btn = self._helpers.find_element_with_scroll(xpath='//*[@text="Удалить аккаунт"]')
+        delete_acc_btn.click()
+        self._helpers.wait_and_click('//*[@text="ДА"]')
+        time.sleep(1)
+        self.select_language()
+        time.sleep(5)

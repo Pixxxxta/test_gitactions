@@ -16,7 +16,7 @@ class ServicesPage:
         """
         Функция для перехода в оплату патента
         """
-        self._helpers.find_element_with_scroll(xpath='//*[@text="Оплата патента"]', max_swipes=10, timeout=3)
+        self._helpers.find_element_with_scroll(xpath='//*[@text="Полезные сервисы"]', max_swipes=10, timeout=3)
         self._helpers.wait_for_element(value='//*[@text="Оплата патента"]')
         self._helpers.wait_and_click(value='//*[@text="Оплата патента"]')
 
@@ -25,7 +25,7 @@ class ServicesPage:
         Функция для перехода в оплату госпошлины
         """
 
-        self._helpers.find_element_with_scroll(xpath='//*[@text="Оплата госпошлины"]', max_swipes=10, timeout=3)
+        self._helpers.find_element_with_scroll(xpath='//*[@text="Полезные сервисы"]', max_swipes=10, timeout=3)
         self._helpers.wait_for_element(value='//*[@text="Оплата госпошлины"]')
         self._helpers.wait_and_click(value='//*[@text="Оплата госпошлины"]')
 
@@ -34,7 +34,7 @@ class ServicesPage:
         Функция для перехода в проверку штрафов МВД
         """
 
-        self._helpers.find_element_with_scroll(xpath='//*[@text="Штрафы МВД"]', max_swipes=10, timeout=3)
+        self._helpers.find_element_with_scroll(xpath='//*[@text="Полезные сервисы"]', max_swipes=10, timeout=3)
         self._helpers.wait_for_element(value='//*[@text="Штрафы МВД"]')
         self._helpers.wait_and_click(value='//*[@text="Штрафы МВД"]')
 
@@ -43,7 +43,7 @@ class ServicesPage:
         Функция для перехода в проверку штрафов ГИБДД
         """
 
-        self._helpers.find_element_with_scroll(xpath='//*[@text="Штрафы ГИБДД"]', max_swipes=10, timeout=3)
+        self._helpers.find_element_with_scroll(xpath='//*[@text="Полезные сервисы"]', max_swipes=10, timeout=3)
         self._helpers.wait_for_element(value='//*[@text="Штрафы ГИБДД"]')
         self._helpers.wait_and_click(value='//*[@text="Штрафы ГИБДД"]')
 
@@ -52,7 +52,7 @@ class ServicesPage:
         Функция для перехода в проверку судебных задолженностей
         """
 
-        self._helpers.find_element_with_scroll(xpath='//*[@text="Судебные задолженности"]', max_swipes=10, timeout=3)
+        self._helpers.find_element_with_scroll(xpath='//*[@text="Полезные сервисы"]', max_swipes=10, timeout=3)
         self._helpers.wait_for_element(value='//*[@text="Судебные задолженности"]')
         self._helpers.wait_and_click(value='//*[@text="Судебные задолженности"]')
 
@@ -61,6 +61,9 @@ class ServicesPage:
         Функция для перехода в проверку оплаты налогов
         """
 
-        self._helpers.find_element_with_scroll(xpath='//*[@text="Оплата налогов"]', max_swipes=10, timeout=3)
+        self._helpers.find_element_with_scroll(xpath='//*[@text="Полезные сервисы"]', max_swipes=10, timeout=3)
         self._helpers.wait_for_element(value='//*[@text="Оплата налогов"]')
         self._helpers.wait_and_click(value='//*[@text="Оплата налогов"]')
+
+    def close_info_page(self):
+        self._helpers.wait_and_click('//android.widget.Button[@text="Не сейчас"]')

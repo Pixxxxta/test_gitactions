@@ -58,6 +58,7 @@ class TestPaymentPatent:
         #
         # # Проверка на наличие текста "ОПЛАТА УСПЕШНО ПРОИЗВЕДЕНА!"
         # assert patent_page.verify_payment_success(), 'Произошла ошибка при оплате'
+        start_page.reset_user()
 
     @allure.feature('Проверка оплаты патента с неправильным форматом ИНН')
     @pytest.mark.parametrize("series_number, last_name, name, inn, passport, date_of_issue_patent", [

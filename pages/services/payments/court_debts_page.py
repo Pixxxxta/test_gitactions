@@ -12,25 +12,20 @@ class CourtDebtsPage:
         self._helpers = AppiumHelpers(driver)
 
     def set_fio(self, fio):
-        self._helpers.wait_for_element(
-            '//android.webkit.WebView[@text="РосМигрант"]/android.view.View/android.view.View'
-            '/android.view.View/android.view.View/android.view.View['
-            '2]/android.view.View/android.view.View/android.widget.EditText[1]').send_keys(fio)
+        elements = self._helpers.find_all_edittexts()
+        elements[0].send_keys(fio)
 
     def set_date(self, date):
-        self._helpers.wait_for_element(
-            '//android.webkit.WebView[@text="РосМигрант"]/android.view.View/android.view.View'
-            '/android.view.View/android.view.View/android.view.View['
-            '2]/android.view.View/android.view.View/android.widget.EditText[2]').send_keys(date)
+        elements = self._helpers.find_all_edittexts()
+        elements[1].click()
+        self._helpers.adb_input_text(date)
+        self._driver.press_keycode(4)
 
     def choose_region(self, region):
-        self._helpers.wait_and_click(
-            '//android.widget.Button[@text="Регион для проверки долгов Республика Адыгея (Адыгея)"]'
-        )
-        time.sleep(5)
-        self._helpers.wait_for_element('//android.widget.EditText').send_keys(region[:-1])
-        time.sleep(5)
-        self._helpers.wait_and_click(f'//*[@text="{region}"]')
+        elements = self._helpers.find_all_edittexts()
+        elements[-1].click()
+        region_element = self._helpers.find_element_with_scroll(xpath=f'//*[@text="{region}"]', max_swipes=30, timeout=3)
+        region_element.click()
 
     def click_check_btn(self):
         time.sleep(5)
@@ -114,3 +109,6 @@ class CourtDebtsPage:
 
     def check_add_doc_btn(self):
         return self._helpers.is_element_present(value='//android.widget.Button[@text="Добавить документ"]')
+
+    def close_info_page(self):
+        self._helpers.wait_and_click('//android.widget.Button[@text="Не сейчас"]')

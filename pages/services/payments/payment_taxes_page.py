@@ -20,7 +20,9 @@ class TaxesPage:
         Функция для выбора типа документа проверки и вставки значения
         :param doc_num: Номер документа
         """
-        self._helpers.wait_for_element('//android.widget.EditText').send_keys(doc_num)
+        self._helpers.wait_and_click('//android.widget.EditText')
+        self._helpers.adb_input_text(doc_num)
+        self._helpers.click_back_btn()
 
     def click_check_btn(self):
         self._helpers.wait_and_click('//android.widget.Button[@text="Проверить"]')
@@ -102,3 +104,6 @@ class TaxesPage:
             return test_success_payment_identifier is not None
         except TimeoutException:
             return False
+
+    def close_info_page(self):
+        self._helpers.wait_and_click('//android.widget.Button[@text="Не сейчас"]')

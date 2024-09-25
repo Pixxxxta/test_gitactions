@@ -4,6 +4,7 @@ from pages.start_page import StartPage
 from pages.services.payments.payments_page import PaymentsPage
 import pytest
 from utils.screenshot_helper import take_screenshot
+from pages.services.services_page import ServicesPage
 
 
 class TestTaxes:
@@ -17,54 +18,59 @@ class TestTaxes:
         # Инициализация стартовой страницы
         start_page = StartPage(appium_driver)
         # Инициализация страницы с выбором типа платежа
-        payments_page = PaymentsPage(appium_driver)
+        services_page = ServicesPage(appium_driver)
         # Инициализация страницы с вводом данных оплаты налогов
         taxes_page = TaxesPage(appium_driver)
 
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
                         folder_name='start_page',
                         screenshot_name="screen_after_choose_language")
-        # Переход в страницу с платежами
-        start_page.go_to_payments()
+        # Переход в страницу с сервисами
+        start_page.go_to_services()
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
                         folder_name='start_page',
-                        screenshot_name=f"screen_after_go_to_payment")
+                        screenshot_name=f"screen_after_go_to_services")
         # Переход в оплату налогов
-        payments_page.go_to_payment_taxes()
+        services_page.go_to_payment_taxes()
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
                         folder_name='payments_page',
                         screenshot_name=f"screen_after_go_to_payment_taxes")
-        # Проверка на наличие сохранённых документов
-        saved_doc = taxes_page.check_saved_doc(doc_type=doc_type, doc_num=doc_num)
-        if saved_doc:
-            taxes_page.click_saved_doc(value=saved_doc)
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_click_saved_doc")
-        else:
-            if taxes_page.check_add_doc_btn():
-                # Добавляем документ
-                taxes_page.click_add_document_button()
-                take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
-                                folder_name='payments_page',
-                                screenshot_name=f"screen_after_click_add_doc")
-            # Выбор типа документа проверки
-            taxes_page.choose_doc_type(doc_type)
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_choose_doc_{doc_type}")
-            # Ввод данных для проверки
-            taxes_page.set_document_data(doc_num=doc_num)
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_input_doc_num_{doc_num}")
-            # Кнопка проверки
-            taxes_page.click_check_btn()
+        # # Проверка на наличие сохранённых документов
+        # saved_doc = taxes_page.check_saved_doc(doc_type=doc_type, doc_num=doc_num)
+        # if saved_doc:
+        #     taxes_page.click_saved_doc(value=saved_doc)
+        #     take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
+        #                     folder_name='payments_page',
+        #                     screenshot_name=f"screen_after_click_saved_doc")
+        # else:
+        #     if taxes_page.check_add_doc_btn():
+        #         # Добавляем документ
+        #         taxes_page.click_add_document_button()
+        #         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
+        #                         folder_name='payments_page',
+        #                         screenshot_name=f"screen_after_click_add_doc")
+        # Выбор типа документа проверки
+        taxes_page.close_info_page()
+        take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_close_info_page")
+        taxes_page.choose_doc_type(doc_type)
+        take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_choose_doc_{doc_type}")
+        # Ввод данных для проверки
+        taxes_page.set_document_data(doc_num=doc_num)
+        take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_input_doc_num_{doc_num}")
+        # Кнопка проверки
+        taxes_page.click_check_btn()
 
         assert taxes_page.verify_no_arrears(), f'Ошибка при поиске задолженностей - {doc_type} - {doc_num}'
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_no_arrears',
                         folder_name='payments_page',
                         screenshot_name=f"screen_after_click_check_btn")
+        start_page.reset_user()
 
     @pytest.mark.parametrize("doc_type, doc_num, payer_fio", [
         ('ИНН', '540363052918', 'Антонио Бандерас')
@@ -75,53 +81,54 @@ class TestTaxes:
     def test_payment_taxes_page_inn_have_arrears(self, appium_driver, doc_type, doc_num, payer_fio):
         # Инициализация стартовой страницы
         start_page = StartPage(appium_driver)
-        # Инициализация страницы с выбором типа платежа
-        payments_page = PaymentsPage(appium_driver)
+        # Инициализация страницы с сервисами
+        services_page = ServicesPage(appium_driver)
         # Инициализация страницы с вводом данных оплаты налогов
         taxes_page = TaxesPage(appium_driver)
 
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
                         folder_name='start_page',
                         screenshot_name="screen_after_choose_language")
-        # Переход в страницу с платежами
-        start_page.go_to_payments()
+        # Переход в страницу с сервисами
+        start_page.go_to_services()
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
                         folder_name='start_page',
                         screenshot_name=f"screen_after_go_to_payment")
         # Переход в оплату налогов
-        payments_page.go_to_payment_taxes()
+        services_page.go_to_payment_taxes()
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
                         folder_name='payments_page',
                         screenshot_name=f"screen_after_go_to_payment_taxes")
         # Проверка на наличие сохранённых документов
-        saved_doc = taxes_page.check_saved_doc(doc_type=doc_type, doc_num=doc_num)
-        if saved_doc:
-            taxes_page.click_saved_doc(value=saved_doc)
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_click_saved_doc")
-        else:
-            if taxes_page.check_add_doc_btn():
-                # Добавляем документ
-                taxes_page.click_add_document_button()
-                take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
-                                folder_name='payments_page',
-                                screenshot_name=f"screen_after_click_add_doc")
-            # Выбор типа документа проверки
-            taxes_page.choose_doc_type(doc_type)
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_choose_doc_{doc_type}")
-            # Ввод данных для проверки
-            taxes_page.set_document_data(doc_num=doc_num)
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_input_doc_num_{doc_num}")
-            # Кнопка проверки
-            taxes_page.click_check_btn()
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_click_check_btn")
+        # saved_doc = taxes_page.check_saved_doc(doc_type=doc_type, doc_num=doc_num)
+        # if saved_doc:
+        #     taxes_page.click_saved_doc(value=saved_doc)
+        #     take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
+        #                     folder_name='payments_page',
+        #                     screenshot_name=f"screen_after_click_saved_doc")
+        # else:
+        #     if taxes_page.check_add_doc_btn():
+        #         # Добавляем документ
+        #         taxes_page.click_add_document_button()
+        #         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
+        #                         folder_name='payments_page',
+        #                         screenshot_name=f"screen_after_click_add_doc")
+        taxes_page.close_info_page()
+        # Выбор типа документа проверки
+        taxes_page.choose_doc_type(doc_type)
+        take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_choose_doc_{doc_type}")
+        # Ввод данных для проверки
+        taxes_page.set_document_data(doc_num=doc_num)
+        take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_input_doc_num_{doc_num}")
+        # Кнопка проверки
+        taxes_page.click_check_btn()
+        take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_click_check_btn")
         # Заполнение фио плательщика
         taxes_page.check_payer_fio(payer_fio)
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_inn_have_arrears',
@@ -140,6 +147,7 @@ class TestTaxes:
         #
         # # Проверка на наличие текста "ОПЛАТА УСПЕШНО ПРОИЗВЕДЕНА!"
         # assert taxes_page.verify_payment_success(), 'Произошла ошибка при оплате'
+        start_page.reset_user()
 
     @pytest.mark.parametrize("doc_type, doc_num", [
         ('УИН', '18810578230828569031')
@@ -150,8 +158,8 @@ class TestTaxes:
     def test_payment_taxes_page_uin_no_arrears(self, appium_driver, doc_type, doc_num):
         # Инициализация стартовой страницы
         start_page = StartPage(appium_driver)
-        # Инициализация страницы с выбором типа платежа
-        payments_page = PaymentsPage(appium_driver)
+        # Инициализация страницы с сервисами
+        services_page = ServicesPage(appium_driver)
         # Инициализация страницы с вводом данных оплаты налогов
         taxes_page = TaxesPage(appium_driver)
 
@@ -159,39 +167,40 @@ class TestTaxes:
                         folder_name='start_page',
                         screenshot_name="screen_after_choose_language")
         # Переход в страницу с платежами
-        start_page.go_to_payments()
+        start_page.go_to_services()
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_uin_no_arrears',
                         folder_name='start_page',
                         screenshot_name=f"screen_after_go_to_payment")
         # Переход в оплату налогов
-        payments_page.go_to_payment_taxes()
+        services_page.go_to_payment_taxes()
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_uin_no_arrears',
                         folder_name='payments_page',
                         screenshot_name=f"screen_after_go_to_payment_taxes")
-        # Проверка на наличие сохранённых документов
-        saved_doc = taxes_page.check_saved_doc(doc_type=doc_type, doc_num=doc_num)
-        if saved_doc:
-            taxes_page.click_saved_doc(value=saved_doc)
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_uin_no_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_click_saved_doc")
-        else:
-            if taxes_page.check_add_doc_btn():
-                # Добавляем документ
-                taxes_page.click_add_document_button()
+        # # Проверка на наличие сохранённых документов
+        # saved_doc = taxes_page.check_saved_doc(doc_type=doc_type, doc_num=doc_num)
+        # if saved_doc:
+        #     taxes_page.click_saved_doc(value=saved_doc)
+        #     take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_uin_no_arrears',
+        #                     folder_name='payments_page',
+        #                     screenshot_name=f"screen_after_click_saved_doc")
+        # else:
+        #     if taxes_page.check_add_doc_btn():
+        #         # Добавляем документ
+        #         taxes_page.click_add_document_button()
 
-            # Выбор типа документа проверки
-            taxes_page.choose_doc_type(doc_type)
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_uin_no_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_choose_doc_{doc_type}")
-            # Ввод данных для проверки
-            taxes_page.set_document_data(doc_num=doc_num)
-            take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_uin_no_arrears',
-                            folder_name='payments_page',
-                            screenshot_name=f"screen_after_input_doc_num_{doc_num}")
-            # Кнопка проверки
-            taxes_page.click_check_btn()
+        taxes_page.close_info_page()
+        # Выбор типа документа проверки
+        taxes_page.choose_doc_type(doc_type)
+        take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_uin_no_arrears',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_choose_doc_{doc_type}")
+        # Ввод данных для проверки
+        taxes_page.set_document_data(doc_num=doc_num)
+        take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_uin_no_arrears',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_input_doc_num_{doc_num}")
+        # Кнопка проверки
+        taxes_page.click_check_btn()
 
         assert taxes_page.verify_no_arrears(), f'Ошибка при поиске задолженностей - {doc_type} - {doc_num}'
         take_screenshot(driver=appium_driver, test_name='test_payment_taxes_page_uin_no_arrears',

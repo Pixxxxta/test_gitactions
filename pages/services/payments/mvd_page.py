@@ -29,8 +29,9 @@ class MVDPage:
                     f'//android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="{doc_category}"]')
 
             # Вводим номер документа
-            document_number_input = self._helpers.wait_for_element('//android.widget.EditText[@resource-id="Номер документа"]')
-            document_number_input.send_keys(doc_number)
+            self._helpers.wait_and_click('//android.widget.EditText')
+            self._helpers.adb_input_text(doc_number)
+            self._helpers.click_back_btn()
 
         except TimeoutException:
             print("Элемент не найден или не кликабелен в течение заданного времени.")

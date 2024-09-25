@@ -63,7 +63,7 @@ jobs:
             adb wait-for-device
             adb shell input keyevent 82
             adb devices
-            pytest -v --disable-warnings -q tests_dev/ -m group7
+            pytest tests_dev/payments_tests/test_fines_gibdd.py
       
 
       - name: check folders with screenshot
@@ -79,5 +79,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-screenshots_group7
+          name: test-screenshots
           path: artifacts/screenshots
