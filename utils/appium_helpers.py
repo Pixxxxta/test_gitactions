@@ -9,7 +9,7 @@ class AppiumHelpers:
     def __init__(self, driver):
         self._driver = driver
 
-    def find_all_textview(self, timeout=60):
+    def find_all_textview(self, timeout=10):
         """Находит все элементы EditText на странице и возвращает их списком."""
         try:
             # Ожидаем загрузки всех элементов EditText на экране
@@ -57,7 +57,7 @@ class AppiumHelpers:
         """Прокручивает экран вниз."""
         size = self._driver.get_window_size()
         start_y = size['height'] * 0.8
-        end_y = size['height'] * 0.2
+        end_y = size['height'] * 0.5
         start_x = size['width'] / 2
         self._driver.swipe(start_x, start_y, start_x, end_y, duration)
 
@@ -69,12 +69,14 @@ class AppiumHelpers:
         start_x = size['width'] / 2
         self._driver.swipe(start_x, start_y, start_x, end_y, duration)
 
-    def adb_input_text(self, text):
+    def adb_input_text(self, text, delay=0.2, russian=False):
         """Использует команду ADB для ввода текста."""
-        self._driver.execute_script("mobile: shell", {
-            "command": "input",
-            "args": ["text", text]
-        })
+        for char in text:
+            self._driver.execute_script("mobile: shell", {
+                "command": "input",
+                "args": ["text", char]
+            })
+            time.sleep(delay)
 
     def slow_type(self, xpath, text, delay=0.1):
         """Ввод текста по одному символу с задержкой."""
@@ -91,7 +93,7 @@ class AppiumHelpers:
         except TimeoutException:
             return False
 
-    def find_element_with_scroll(self, xpath, max_swipes=15, timeout=30):
+    def find_element_with_scroll(self, xpath, max_swipes=15, timeout=15):
         """Прокручивает экран, пока не найдет элемент с заданным xpath или не выполнит все прокруты."""
         for _ in range(max_swipes):
             try:
@@ -100,3 +102,9 @@ class AppiumHelpers:
             except:
                 self.swipe_down()
         raise Exception(f"Element with xpath {xpath} not found after {max_swipes} swipes")
+
+    def click_back_btn(self):
+        self._driver.press_keycode(4)
+
+
+

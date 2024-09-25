@@ -1,3 +1,5 @@
+import time
+
 from selenium.common import TimeoutException
 from utils.appium_helpers import AppiumHelpers
 
@@ -20,18 +22,24 @@ class GIBDDPage:
         self._helpers.wait_and_click(f'//android.view.View[@text="{doc_type}"]')
 
     def set_car_number(self, doc_number, region):
-        self._helpers.wait_for_element(
-            '//android.widget.EditText[@resource-id="sp-input-0"]').send_keys(
-            doc_number)
-        self._helpers.wait_for_element(
-            '//android.widget.EditText[@resource-id="sp-input-1"]').send_keys(
-            region)
+        elements = self._helpers.find_all_edittexts()
+        elements[0].click()
+        self._helpers.adb_input_text(doc_number)
+        self._helpers.click_back_btn()
+
+        elements[-1].click()
+        self._helpers.adb_input_text(region)
+        self._helpers.click_back_btn()
 
     def set_driver_number(self, doc_number):
-        self._helpers.wait_for_element('//android.widget.EditText').send_keys(doc_number)
+        self._helpers.wait_and_click('//android.widget.EditText')
+        self._helpers.adb_input_text(doc_number)
+        self._helpers.click_back_btn()
 
     def set_UIN_number(self, uin):
-        self._helpers.wait_for_element('//android.widget.EditText').send_keys(uin)
+        self._helpers.wait_and_click('//android.widget.EditText')
+        self._helpers.adb_input_text(uin)
+        self._helpers.click_back_btn()
 
     def click_check_btn(self):
         self._helpers.wait_and_click('//android.widget.Button[@text="Проверить"]')
