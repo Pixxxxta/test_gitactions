@@ -2,6 +2,7 @@ import time
 
 from selenium.common import TimeoutException
 from utils.appium_helpers import AppiumHelpers
+from utils.screenshot_helper import take_screenshot
 
 
 # Штрафы ГИБДД
@@ -23,9 +24,13 @@ class GIBDDPage:
 
     def set_car_number(self, doc_number, region):
         elements = self._helpers.find_all_edittexts()
+        print(len(elements))
         time.sleep(3)
         elements[0].click()
         time.sleep(3)
+        take_screenshot(driver=self._driver, test_name='test_no_fines_car_number',
+                        folder_name='payment_page',
+                        screenshot_name=f"screen_verify_keyboard_have")
         self._helpers.adb_input_text(doc_number)
         time.sleep(3)
         self._helpers.click_back_btn()
