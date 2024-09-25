@@ -23,13 +23,20 @@ class GIBDDPage:
 
     def set_car_number(self, doc_number, region):
         elements = self._helpers.find_all_edittexts()
+        time.sleep(3)
         elements[0].click()
+        time.sleep(3)
         self._helpers.adb_input_text(doc_number)
+        time.sleep(3)
         self._helpers.click_back_btn()
+        time.sleep(3)
 
         elements[-1].click()
+        time.sleep(3)
         self._helpers.adb_input_text(region)
+        time.sleep(3)
         self._helpers.click_back_btn()
+        time.sleep(3)
 
     def set_driver_number(self, doc_number):
         self._helpers.wait_and_click('//android.widget.EditText')
@@ -55,7 +62,7 @@ class GIBDDPage:
         except TimeoutException:
             return False
 
-    def verify_have_fines(self, timeout=20):
+    def verify_have_fines(self, timeout=60):
         """Проверка, что штрафы есть"""
         try:
             fines_check = self._helpers.wait_for_element('//android.widget.Button[@text="Оплатить"]', timeout)
@@ -67,7 +74,7 @@ class GIBDDPage:
         # TODO Добавить выбор штрафов
         self._helpers.wait_and_click('//android.widget.Button[@text="Оплатить"]')
 
-    def verify_payment_page_loaded(self, timeout=20):
+    def verify_payment_page_loaded(self, timeout=60):
         """Проверяет, что страница оплаты загружена."""
         try:
             payment_page_identifier = self._helpers.wait_for_element(

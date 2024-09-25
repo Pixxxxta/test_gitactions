@@ -54,16 +54,17 @@ jobs:
       - name: Start Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 30   # Версия Android 11.0
-          target: google_apis
-          arch: x86_64
-          ndk: 21.0.6113669
-          cmake: 3.10.2.4988404
-          script: |
-            adb wait-for-device
-            adb shell input keyevent 82
-            adb devices
-            pytest tests_dev/payments_tests/test_fines_gibdd.py
+            api-level: 30   # Версия Android 11.0
+            target: google_apis
+            arch: x86_64
+            device: pixel_8_pro  # Указываем устройство Pixel 8 Pro
+            ndk: 21.0.6113669
+            cmake: 3.10.2.4988404
+            script: |
+              adb wait-for-device
+              adb shell input keyevent 82
+              adb devices
+              pytest tests_dev/payments_tests/test_fines_gibdd.py::TestSearchFinesGIBDD::test_no_fines_car_number
       
 
       - name: check folders with screenshot

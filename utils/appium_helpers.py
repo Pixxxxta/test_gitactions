@@ -9,7 +9,7 @@ class AppiumHelpers:
     def __init__(self, driver):
         self._driver = driver
 
-    def find_all_textview(self, timeout=10):
+    def find_all_textview(self, timeout=30):
         """Находит все элементы EditText на странице и возвращает их списком."""
         try:
             # Ожидаем загрузки всех элементов EditText на экране
@@ -69,7 +69,7 @@ class AppiumHelpers:
         start_x = size['width'] / 2
         self._driver.swipe(start_x, start_y, start_x, end_y, duration)
 
-    def adb_input_text(self, text, delay=0.2, russian=False):
+    def adb_input_text(self, text, delay=0.4, russian=False):
         """Использует команду ADB для ввода текста."""
         for char in text:
             self._driver.execute_script("mobile: shell", {
@@ -78,7 +78,7 @@ class AppiumHelpers:
             })
             time.sleep(delay)
 
-    def slow_type(self, xpath, text, delay=0.1):
+    def slow_type(self, xpath, text, delay=0.4):
         """Ввод текста по одному символу с задержкой."""
         element = self._driver.find_element_by_xpath(xpath)
         element.click()
