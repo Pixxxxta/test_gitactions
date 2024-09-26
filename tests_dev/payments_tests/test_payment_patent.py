@@ -24,7 +24,13 @@ class TestPaymentPatent:
                         screenshot_name=f"screen_after_launch_app")
 
         start_page.go_to_services()
+        take_screenshot(driver=appium_driver, test_name='test_payment_patent_with_wrong_inn',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_go_to_services")
         services_page.go_to_payment_patent()
+        take_screenshot(driver=appium_driver, test_name='test_payment_patent_with_wrong_inn',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_go_to_services")
         # if not patent_page.check_saved_patent(series_number):
         #     patent_page.click_add_patent()
 
