@@ -48,9 +48,6 @@ class TestLifeSituations:
         services_page.go_to_task('HalalCard')
         take_screenshot(appium_driver, test_name='test_go_to_halal_card', folder_name='services_page',
                         screenshot_name='screenshot_after_go_to_task_HalalCard')
-        services_page.click_accept_google_chrome_btn()
-        take_screenshot(appium_driver, test_name='test_go_to_halal_card', folder_name='services_page',
-                        screenshot_name='screenshot_after_click_accept_google_chrome_btn')
         assert tasks_page.check_current_url('halalcard.ru'), \
             'Не произошёл переход на страницу halalcard.ru'
         take_screenshot(appium_driver, test_name='test_go_to_halal_card', folder_name='services_page',
