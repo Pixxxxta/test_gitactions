@@ -77,6 +77,8 @@ class ServicesPage:
 
     def click_accept_google_chrome_btn(self):
         self._click_element_by_id(id='com.android.chrome:id/terms_accept')
+        time.sleep(3)
+        self._click_element_by_id(id='com.android.chrome:id/negative_button')
 
     def _click_element_by_id(self, id):
         """
