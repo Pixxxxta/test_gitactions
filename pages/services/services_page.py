@@ -1,5 +1,10 @@
 import time
+from selenium.common import NoSuchElementException, TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from utils.appium_helpers import AppiumHelpers
+import os
 
 
 class ServicesPage:
@@ -69,3 +74,17 @@ class ServicesPage:
     def go_to_task(self, task_name):
         task_element = self._helpers.find_element_with_scroll(xpath=f'//*[@text="{task_name}"]')
         task_element.click()
+
+    def click_accept_google_chrome_btn(self):
+        self._click_element_by_id(id='com.android.chrome:id/terms_accept')
+
+    def _click_element_by_id(self, id):
+        """
+        Внутренняя функция для клика по элементу по XPath
+        """
+        try:
+            WebDriverWait(self._driver, 60).until(
+                EC.element_to_be_clickable((By.ID, id))
+            ).click()
+        except TimeoutException:
+            raise TimeoutException(f"Элемент по id '{id}' не был найден или не стал кликабельным.")
