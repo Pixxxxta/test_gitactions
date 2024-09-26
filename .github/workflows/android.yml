@@ -64,7 +64,7 @@ jobs:
               adb wait-for-device
               adb shell input keyevent 82
               adb devices
-              pytest tests_dev/payments_tests/test_payment_patent.py
+              pytest tests_dev/payments_tests/test_payment_patent.py::TestPaymentPatent::test_payment_patent
       
 
       - name: check folders with screenshot

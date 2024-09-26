@@ -33,7 +33,10 @@ class TestPaymentPatent:
                         screenshot_name=f"screen_after_go_to_payment_patent")
         # if not patent_page.check_saved_patent(series_number):
         #     patent_page.click_add_patent()
-        time.sleep(10)
+        time.sleep(20)
+        take_screenshot(driver=appium_driver, test_name='test_payment_patent',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_sleep_10")
         patent_page.set_patent_series_number(series_number, last_name, name, inn, passport, date_of_issue_patent)
         take_screenshot(driver=appium_driver, test_name='test_payment_patent',
                         folder_name='payments_page',

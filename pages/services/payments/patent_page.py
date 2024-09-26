@@ -2,6 +2,8 @@ import time
 
 from selenium.common import TimeoutException
 from utils.appium_helpers import AppiumHelpers
+from utils.screenshot_helper import take_screenshot
+
 
 
 # Оплата патента
@@ -22,6 +24,9 @@ class PatentPage:
         :param series_number: Серия и номер патента
         """
         self.scroll_down()
+        take_screenshot(driver=self._driver, test_name='test_payment_patent',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_scroll_down")
         elements = self._helpers.find_all_edittexts()
         elements[0].click()
         self._helpers.adb_input_text(series_number)
