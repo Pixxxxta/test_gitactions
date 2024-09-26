@@ -56,8 +56,8 @@ class AppiumHelpers:
     def swipe_down(self, duration=1000):
         """Прокручивает экран вниз."""
         size = self._driver.get_window_size()
-        start_y = size['height'] * 0.8
-        end_y = size['height'] * 0.5
+        start_y = size['height'] * 0.5
+        end_y = size['height'] * 0.2
         start_x = size['width'] / 2
         self._driver.swipe(start_x, start_y, start_x, end_y, duration)
 

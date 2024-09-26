@@ -38,8 +38,16 @@ class TestLifeSituations:
         tasks_page = TasksPage(appium_driver)
 
         start_page.go_to_services()
+        take_screenshot(appium_driver, test_name='test_go_to_halal_card', folder_name='services_page',
+                        screenshot_name='screenshot_after_go_to_services')
         services_page.go_to_all_services()
+        take_screenshot(appium_driver, test_name='test_go_to_halal_card', folder_name='services_page',
+                        screenshot_name='screenshot_after_go_to_all_services')
         services_page.go_to_task('HalalCard')
+        take_screenshot(appium_driver, test_name='test_go_to_halal_card', folder_name='services_page',
+                        screenshot_name='screenshot_after_go_to_task_HalalCard')
 
         assert tasks_page.check_current_url('halalcard.ru'), \
             'Не произошёл переход на страницу halalcard.ru'
+        take_screenshot(appium_driver, test_name='test_go_to_halal_card', folder_name='services_page',
+                        screenshot_name='screenshot_after_check_current_url')
