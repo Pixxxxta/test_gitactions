@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from utils.appium_helpers import AppiumHelpers
 import os
+from utils.screenshot_helper import take_screenshot
 
 
 class ServicesPage:
@@ -16,7 +17,11 @@ class ServicesPage:
         """
         Функция для перехода в оплату патента
         """
+        time.sleep(3)
         self._helpers.find_element_with_scroll(xpath='//*[@text="Штрафы ГИБДД"]', max_swipes=10, timeout=3)
+        take_screenshot(driver=self._driver, test_name='test_payment_patent',
+                        folder_name='payments_page',
+                        screenshot_name=f"screen_after_find_element_with_scroll")
         self._helpers.wait_for_element(value='//*[@text="Оплата патента"]')
         self._helpers.wait_and_click(value='//*[@text="Оплата патента"]')
 
