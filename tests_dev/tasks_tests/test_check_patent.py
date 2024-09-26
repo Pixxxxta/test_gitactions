@@ -1,8 +1,8 @@
 import time
 
 from pages.start_page import StartPage
-from pages.tasks.tasks_page import TasksPage
-from pages.tasks.check_patent_page import CheckPatentPage
+from pages.services.tasks.tasks_page import TasksPage
+from pages.services.tasks.check_patent_page import CheckPatentPage
 
 
 class TestCheckPatent:

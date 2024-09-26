@@ -1,8 +1,8 @@
 import time
 
 from pages.start_page import StartPage
-from pages.tasks.tasks_page import TasksPage
-from pages.tasks.resume_page import ResumePage
+from pages.services.tasks.tasks_page import TasksPage
+from pages.services.tasks.resume_page import ResumePage
 
 
 class TestResume:

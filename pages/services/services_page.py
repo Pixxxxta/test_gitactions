@@ -1,11 +1,5 @@
 import time
-
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 from utils.appium_helpers import AppiumHelpers
-import os
-from utils.screenshot_helper import take_screenshot
 
 
 class ServicesPage:
@@ -17,7 +11,7 @@ class ServicesPage:
         """
         Функция для перехода в оплату патента
         """
-        self._helpers.find_element_with_scroll(xpath='//*[@text="Штрафы ГИБДД"]', max_swipes=10, timeout=3)
+        self._helpers.find_element_with_scroll(xpath='//*[@text="Полезные сервисы"]', max_swipes=10, timeout=3)
         self._helpers.wait_for_element(value='//*[@text="Оплата патента"]')
         self._helpers.wait_and_click(value='//*[@text="Оплата патента"]')
 
@@ -68,3 +62,10 @@ class ServicesPage:
 
     def close_info_page(self):
         self._helpers.wait_and_click('//android.widget.Button[@text="Не сейчас"]')
+
+    def go_to_all_services(self):
+        self._helpers.wait_and_click(value='//android.widget.Button[@text="Все сервисы "]')
+
+    def go_to_task(self, task_name):
+        task_element = self._helpers.find_element_with_scroll(xpath=f'//android.widget.TextView[@text="{task_name}"]')
+        task_element.click()

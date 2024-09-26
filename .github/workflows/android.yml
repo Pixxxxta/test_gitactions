@@ -64,7 +64,7 @@ jobs:
               adb wait-for-device
               adb shell input keyevent 82
               adb devices
-              pytest tests_dev/payments_tests/test_payment_taxes.py::TestTaxes::test_payment_taxes_page_inn_have_arrears
+              pytest tests_dev/tasks_tests/test_life_situation.py::TestLifeSituations::test_go_to_naimix
       
 
       - name: check folders with screenshot

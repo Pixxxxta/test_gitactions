@@ -1,8 +1,8 @@
 import time
 
 from pages.start_page import StartPage
-from pages.tasks.tasks_page import TasksPage
-from pages.tasks.rvp_vnj_page import RvpVnjPage
+from pages.services.tasks.tasks_page import TasksPage
+from pages.services.tasks.rvp_vnj_page import RvpVnjPage
 
 
 class TestRvpVnj:

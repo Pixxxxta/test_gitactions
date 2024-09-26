@@ -1,8 +1,8 @@
 import time
 
 from pages.start_page import StartPage
-from pages.tasks.tasks_page import TasksPage
-from pages.tasks.entry_ban_page import EntryBanPage
+from pages.services.tasks.tasks_page import TasksPage
+from pages.services.tasks.entry_ban_page import EntryBanPage
 
 
 class TestEntryBan:

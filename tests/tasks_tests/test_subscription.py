@@ -1,6 +1,6 @@
 from pages.start_page import StartPage
-from pages.tasks.tasks_page import TasksPage
-from pages.tasks.subscription_page import SubscriptionPage
+from pages.services.tasks.tasks_page import TasksPage
+from pages.services.tasks.subscription_page import SubscriptionPage
 
 
 class TestSubscription:

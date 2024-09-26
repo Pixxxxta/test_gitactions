@@ -1,7 +1,7 @@
 import pytest
 
 from pages.start_page import StartPage
-from pages.tasks.tasks_page import TasksPage
+from pages.services.tasks.tasks_page import TasksPage
 from pages.tasks.stay_control_calculator_page import StayControlCalculatorPage
 from utils.screenshot_helper import take_screenshot
 import allure

@@ -1,10 +1,8 @@
-import time
-
 import pytest
 
 from pages.start_page import StartPage
-from pages.tasks.tasks_page import TasksPage
-from pages.tasks.med_book_page import MedBookPage
+from pages.services.tasks.tasks_page import TasksPage
+from pages.services.tasks.med_book_page import MedBookPage
 from utils.screenshot_helper import take_screenshot
 import allure
 
