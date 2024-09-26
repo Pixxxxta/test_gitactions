@@ -67,5 +67,5 @@ class ServicesPage:
         self._helpers.wait_and_click(value='//android.widget.Button[@text="Все сервисы "]')
 
     def go_to_task(self, task_name):
-        task_element = self._helpers.find_element_with_scroll(xpath=f'//android.widget.TextView[@text="{task_name}"]')
+        task_element = self._helpers.find_element_with_scroll(xpath=f'//*[@text="{task_name}"]')
         task_element.click()
