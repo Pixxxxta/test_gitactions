@@ -16,7 +16,7 @@ class ServicesPage:
         """
         Функция для перехода в оплату патента
         """
-        self._helpers.find_element_with_scroll(xpath='//*[@text="Оплата патента"]', max_swipes=10, timeout=3)
+        self._helpers.find_element_with_scroll(xpath='//*[@text="Штрафы ГИБДД"]', max_swipes=10, timeout=3)
         self._helpers.wait_for_element(value='//*[@text="Оплата патента"]')
         self._helpers.wait_and_click(value='//*[@text="Оплата патента"]')
 
